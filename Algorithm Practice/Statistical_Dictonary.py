@@ -15,17 +15,22 @@ def get_statistics(input_list):
         median = (middle_num_1 + middle_num_2) /2
 
     #mode 
-    number_counts = {x: sorted_imput.count(x) for i in set(sorted_imput)} #counts the amount of each unique number
+    number_counts = {x: sorted_imput.count(x) for x in set(sorted_imput)} #counts the amount of each unique number
     mode = max(number_counts.keys(), key=lambda unique_number: number_counts[unique_number]) #needs explanation
 
     #sample variance 
-    sample_variance = sum([])
+    sample_variance = sum([(number - mean)**2 / (input_length - 1) for number in sorted_imput]) # 
 
     #sample_standard deviation
     
-
+    sample_standard_deviation = sample_variance ** 0.5 #square root is 1/2 exponential power 
 
     #mean CI interval 
+
+    mean_standard_error = sample_standard_deviation / input_length ** 0.5
+    z_score_standard_error = 1.96 * mean_standard_error
+    mean_confidence_interval = [mean - z_score_standard_error, mean+z_score_standard_error]
+
 
 
     return {
